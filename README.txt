@@ -1,0 +1,1 @@
+This repository stores all group course projects required for CS8370.
