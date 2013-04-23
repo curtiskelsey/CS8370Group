@@ -7,3 +7,6 @@ Source: Artificial Intelligence for Investigating Anti-cancer solutions, Institu
 Link: http://aiia.iis.sinica.edu.tw/index.php?option=com_docman&task=cat_view&gid=34&dir=DESC&order=date&limit=5&limitstart=5
 Description: Transactional data set with more than 30,000 users and 20,000 items.
 
+Curtis Kelsey 4-22-2013
+
+I have added several files. We should add our findings to the Advertising Positioning powerpoint file and document file for the presentation and report respectively. You both sould be able to open vip_graph.html is a browser and see a line graph of the customer ids on the x axis and the number of purchases on the y axis. This is not a snapshot of the entire dataset, however. It is of file D01.
