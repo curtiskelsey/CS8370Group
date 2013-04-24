@@ -1,12 +1,46 @@
-Hey! So this repository will function as our single location to put any files related to our project. Make sure to comment anything you work on so everyone else knows what it is. You can put any initial information we need to know about what you add in here.
+Hey! So this repository will function as our single location to put any files related to our project. Make sure to 
+comment anything you work on so everyone else knows what it is. You can put any initial information we need to know 
+about what you add in here.
 
 Thanks!
 
 TaFeng Data Set
-Source: Artificial Intelligence for Investigating Anti-cancer solutions, Institute of Information Science, Academia Sinica, Taiwan.
-Link: http://aiia.iis.sinica.edu.tw/index.php?option=com_docman&task=cat_view&gid=34&dir=DESC&order=date&limit=5&limitstart=5
+Source: Artificial Intelligence for Investigating Anti-cancer solutions, Institute of Information Science, Academia 
+Sinica, Taiwan.Link: 
+http://aiia.iis.sinica.edu.tw/index.php?option=com_docman&task=cat_view&gid=34&dir=DESC&order=date&limit=5&limitstart=5
 Description: Transactional data set with more than 30,000 users and 20,000 items.
 
 Curtis Kelsey 4-22-2013
+###############################################################
+I have added several files. We should add our findings to the Advertising Positioning powerpoint file and document file 
+for the presentation and report respectively. You both sould be able to open vip_graph.html is a browser and see a line 
+graph of the customer ids on the x axis and the number of purchases on the y axis. This is not a snapshot of the entire 
+dataset, however. It is of file D01.
 
-I have added several files. We should add our findings to the Advertising Positioning powerpoint file and document file for the presentation and report respectively. You both sould be able to open vip_graph.html is a browser and see a line graph of the customer ids on the x axis and the number of purchases on the y axis. This is not a snapshot of the entire dataset, however. It is of file D01.
+Curtis Kelsey 4-24-2013
+###############################################################
+I am using the following tools to process the data files:
+
+http://dev.mysql.com/downloads/tools/workbench/ (MySQL Workbench)
+http://aptana.com/ (Aptana Web Development IDE)
+http://www.wampserver.com/en/ (Windows, Apache, MySQL, PHP installation stack)
+
+Last night we installed WAMP on Feng Fan's computer and copied the repository contents to the C:\wamp\www\ directory. He 
+could then type localhost into a web browser and bring up the WAMP default page and then navigate to the files and 
+display them. With all of the files in the repository if you want to run them you simply need to navigate to them in the 
+web browser and they will execute.
+
+MySQL Database
+--------------
+I did not have time to backup the database and get it uploaded last night. I forgot my computer at home today so I will 
+have to back it up tonight and upload it. I will do that when I get home at approximately 6 PM tonight. I will be using 
+the following tutorial to back it up which you may also use to restore it on your computer:
+
+https://help.fasthosts.co.uk/app/answers/detail/a_id/1404/~/back-up-and-restore-mysql-databases-using-mysql-workbench
+
+Template Files
+--------------
+I have made notes in the vip_graph.html file and the create_vip_data.php file. The notes tell you what to change so that 
+you may generate a tsv file with the php file and then display the tsv file with the html file. Let me know if you would
+like to generate data files with more than two columns or would like another method of displaying the data such as a bar
+chart or scatterplot. I can template some files for you pretty quickly.

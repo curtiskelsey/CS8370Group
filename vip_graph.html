@@ -1,93 +1,101 @@
-<!--
-	This file displays the custoomer vip data in a histogram 
--->
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<!--
+	This file displays the customer vip data in a histogram. It may be used as a template to generate other line graphs. 
+-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+		
+		body {
+		  font: 10px sans-serif;
+		}
+		
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+		
+		.x.axis path {
+		  display: none;
+		}
+		
+		.line {
+		  fill: none;
+		  stroke: steelblue;
+		  stroke-width: 1.5px;
+		}
+		
+		</style>
+	</head>
 
-body {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-</style>
-<body>
-	<h2 style="position:fixed;top:0;left:49%;">Purchases by Customer</h2>
-<script src="d3.v3.js"></script>
-<script>
-
-var margin = {top: 50, right: 20, bottom: 50, left: 50},
-    width = window.innerWidth - margin.left - margin.right,
-    height = window.innerHeight - margin.top - margin.bottom;
-
-var x = d3.scale.linear()
-    .range([0, width]);
-
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
-var line = d3.svg.line()
-    .x(function(d) { return x(d.customer); })
-    .y(function(d) { return y(d.purchases); });
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-d3.tsv("vip_data.tsv", function(error, data) {
-  data.forEach(function(d) {
-    d.customer = d.customer;
-    d.purchases = +d.purchases;
-  });
-
-  x.domain(d3.extent(data, function(d) { return d.customer; }));
-  y.domain(d3.extent(data, function(d) { return d.purchases; }));
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Purchases");
-
-  svg.append("path")
-      .datum(data)
-      .attr("class", "line")
-      .attr("d", line);
-});
-
-</script>
+	<body>
+		<!-- Title of the graph. You may edit the text contained in the h2 element to read as you would like -->
+		<h2 style="position:fixed;top:0;left:49%;">Purchases by Customer</h2>
+		<script src="d3.v3.js"></script>
+		<script>
+			var margin = {top: 50, right: 20, bottom: 50, left: 50},
+			    width = window.innerWidth - margin.left - margin.right,
+			    height = window.innerHeight - margin.top - margin.bottom;
+			
+			var x = d3.scale.linear()
+			    .range([0, width]);
+			
+			var y = d3.scale.linear()
+			    .range([height, 0]);
+			
+			var xAxis = d3.svg.axis()
+			    .scale(x)
+			    .orient("bottom");
+			
+			var yAxis = d3.svg.axis()
+			    .scale(y)
+			    .orient("left");
+			
+			var line = d3.svg.line()
+			    .x(function(d) { return x(d.customer); })// Change customer to the name of your first column of data
+			    .y(function(d) { return y(d.purchases); });// Change purchases to the name of your second column of data
+			
+			var svg = d3.select("body").append("svg")
+			    .attr("width", width + margin.left + margin.right)
+			    .attr("height", height + margin.top + margin.bottom)
+			  .append("g")
+			    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+			// Change the 'vip_data.tsv' string to the name of your data file. Your data file should be in the same
+			// directory as this file and contain two columns of data. 			
+			d3.tsv("vip_data.tsv", function(error, data) {
+			  data.forEach(function(d) {
+			    d.customer = d.customer;//Change customer to the name of your first column of data
+			    d.purchases = +d.purchases;// Change purchases to the name of your second column of data
+			  });
+			
+			  x.domain(d3.extent(data, function(d) { return d.customer; }));//Change customer to the name of your first column of data
+			  y.domain(d3.extent(data, function(d) { return d.purchases; }));// Change purchases to the name of your second column of data
+			
+			  svg.append("g")
+			      .attr("class", "x axis")
+			      .attr("transform", "translate(0," + height + ")")
+			      .call(xAxis);
+			
+			  svg.append("g")
+			      .attr("class", "y axis")
+			      .call(yAxis)
+			    .append("text")
+			      .attr("transform", "rotate(-90)")
+			      .attr("y", 6)
+			      .attr("dy", ".71em")
+			      .style("text-anchor", "end")
+			      .text("Purchases");
+			
+			  svg.append("path")
+			      .datum(data)
+			      .attr("class", "line")
+			      .attr("d", line);
+			});
+		
+		</script>
+	</body>
+</html>
