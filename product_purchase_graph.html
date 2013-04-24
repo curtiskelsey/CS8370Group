@@ -28,7 +28,7 @@ body {
 
 </style>
 <body>
-	<h2 style="position:fixed;top:0;left:49%;">Purchases by Customer</h2>
+	<h2 style="position:fixed;top:0;left:49%;">Purchases by Product</h2>
 <script src="d3.v3.js"></script>
 <script>
 
@@ -51,7 +51,7 @@ var yAxis = d3.svg.axis()
     .orient("left");
 
 var line = d3.svg.line()
-    .x(function(d) { return x(d.customer); })
+    .x(function(d) { return x(d.product); })
     .y(function(d) { return y(d.purchases); });
 
 var svg = d3.select("body").append("svg")
@@ -60,13 +60,13 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("vip_data.tsv", function(error, data) {
+d3.tsv("product_purchases.tsv", function(error, data) {
   data.forEach(function(d) {
-    d.customer = d.customer;
+    d.product = d.product;
     d.purchases = +d.purchases;
   });
 
-  x.domain(d3.extent(data, function(d) { return d.customer; }));
+  x.domain(d3.extent(data, function(d) { return d.product; }));
   y.domain(d3.extent(data, function(d) { return d.purchases; }));
 
   svg.append("g")
