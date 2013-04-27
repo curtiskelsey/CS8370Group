@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+</style>
+<body>
+	<h2 style="position:fixed;top:0;left:49%;">Purchases by Location</h2>
+<script src="d3.v3.js"></script>
+<script>
+
+var margin = {top: 50, right: 50, bottom: 100, left: 50},
+    width = window.innerWidth - margin.left - margin.right,
+    height = window.innerHeight - margin.top - margin.bottom;
+
+var formatPercent = d3.format(".0");
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(formatPercent);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right - 50)
+    .attr("height", height + margin.top + margin.bottom - 50)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.tsv("location_purchase_data.tsv", function(error, data) {
+
+  data.forEach(function(d) {
+    d.purchases = +d.purchases;
+  });
+
+  x.domain(data.map(function(d) { return d.location; }));
+  y.domain([0, d3.max(data, function(d) { return d.purchases; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Purchases");
+
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.location); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.purchases); })
+      .attr("height", function(d) { return height - y(d.purchases); });
+
+});
+
+</script>

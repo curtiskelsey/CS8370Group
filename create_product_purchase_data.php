@@ -23,6 +23,9 @@
 		die();
 	}
 	
+	$sql="INSERT INTO frequent_items (product_id,count) VALUES (:prod,:count)";
+	$sth=$dbh->prepare($sql);
+	
 	$fh = @fopen('product_purchases.tsv','w');
 	fwrite($fh,"product\tpurchases\n");
 	foreach($results as $r){
