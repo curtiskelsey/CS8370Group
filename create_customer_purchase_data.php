@@ -50,4 +50,5 @@
     
     //This line closes the file we were writing to
 	fclose($fh);
+	echo "Done!";
 ?>

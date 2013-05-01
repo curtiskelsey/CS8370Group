@@ -15,7 +15,7 @@
 	$sth=$dbh->prepare($sql);
 	
 	ini_set('memory_limit', '1024M');
-	$files = Array('TaFengDataSet/D01');//,'TaFengDataSet/D02','TaFengDataSet/D11','TaFengDataSet/D12');
+	$files = Array('TaFengDataSet/D12');//,'TaFengDataSet/D01','TaFengDataSet/D02','TaFengDataSet/D11');
 	
 	foreach($files as &$file){
 		echo "Processing $file...\n";

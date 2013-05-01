@@ -32,6 +32,6 @@
 		fwrite($fh,$r['product_id']."\t".$r['purchases']."\n");
 	}
 	fclose($fh);
-
+	echo "Done!";
 
 ?>
